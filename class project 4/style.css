@@ -1,5 +1,3 @@
-/* style.css - simple, commented CSS for the 3D flip card */
-
 /* Basic page reset & font */
 :root {
   --card-width: 320px;
@@ -169,3 +167,4 @@ body {
   font-size: 0.9rem;
   color: #475569;
 }
+
