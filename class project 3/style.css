@@ -1,4 +1,4 @@
-/* Base styles */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -102,3 +102,4 @@ footer {
     display: flex;
   }
 }
+
