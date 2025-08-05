@@ -1,0 +1,171 @@
+/* style.css - simple, commented CSS for the 3D flip card */
+
+/* Basic page reset & font */
+:root {
+  --card-width: 320px;
+  --card-height: 420px;
+  --radius: 12px;
+  --transition-duration: 0.6s;
+}
+
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #f5f7fb 0%, #eef2f7 100%);
+  color: #111827;
+  display: grid;
+  place-items: center;
+  padding: 40px;
+}
+
+/* Page layout */
+.page {
+  text-align: center;
+  max-width: 900px;
+}
+.page-title {
+  margin: 0 0 24px;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Card — the perspective container */
+.card {
+  width: var(--card-width);
+  height: var(--card-height);
+  margin: 0 auto;
+  perspective: 1200px; /* depth */
+  outline: none; /* we'll show focus with box-shadow on inner element */
+  cursor: pointer;
+}
+
+/* Make card focusable for keyboard users. :focus-within flips the card too */
+.card:focus { outline: none; }
+
+/* Inner element that will rotate */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform var(--transition-duration) ease;
+  transform-style: preserve-3d; /* keep children in 3D space */
+  border-radius: var(--radius);
+  /* subtle shadow and border */
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* Flip on hover OR when keyboard focus is inside the card */
+.card:hover .card-inner,
+.card:focus-within .card-inner {
+  transform: rotateY(180deg); /* key flip transform */
+}
+
+/* Each face (front/back) */
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; /* hide backside when rotated away */
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+}
+
+/* FRONT face styling */
+.card-front {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+  padding: 0;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+/* Image area */
+.card-image img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Front content */
+.card-content {
+  padding: 20px;
+  text-align: left;
+}
+.card-title {
+  margin: 8px 0 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.card-tagline {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #596275;
+}
+
+/* BACK face styling (rotated) */
+.card-back {
+  background: linear-gradient(180deg, #0f172a, #0b1220);
+  color: #fff;
+  transform: rotateY(180deg); /* show when card-inner is rotated */
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* Back content layout */
+.card-back-content {
+  max-width: 86%;
+  text-align: center;
+}
+.card-desc {
+  margin: 0.5rem 0 1.25rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.45;
+  font-size: 0.95rem;
+}
+
+/* Button (styled link) */
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #ffd166, #ff8a65);
+  color: #111;
+  box-shadow: 0 6px 14px rgba(255,138,101,0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.btn:active { transform: translateY(1px); }
+
+/* Accessibility: show focus ring when using keyboard */
+.card:focus-within .card-inner {
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.18);
+}
+
+/* Utility for a visually-hidden element (for image caption) */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* Small screens: center and scale a bit */
+@media (max-width: 360px) {
+  :root { --card-width: 300px; --card-height: 400px; }
+}
+
+/* Nice hint text */
+.hint {
+  margin-top: 18px;
+  font-size: 0.9rem;
+  color: #475569;
+}

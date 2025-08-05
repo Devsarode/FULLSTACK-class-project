@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3D Flip Card (HTML & CSS)</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Link stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <h1 class="page-title">Interactive 3D Flip Card (Hover / Keyboard)</h1>
+
+    <!-- Card container -->
+    <article class="card" tabindex="0" aria-label="Profile card. Press Enter or hover to flip.">
+      <!-- inner wrapper that will rotate -->
+      <div class="card-inner">
+        <!-- front face -->
+        <header class="card-face card-front">
+          <figure class="card-image">
+            <img src="https://via.placeholder.com/320x180.png?text=Placeholder+Image" alt="Placeholder" />
+            <figcaption class="visually-hidden">Profile image</figcaption>
+          </figure>
+          <div class="card-content">
+            <h3 class="card-title">Ava Walker</h3>
+            <p class="card-tagline">Frontend Developer • UI Enthusiast</p>
+          </div>
+        </header>
+
+        <!-- back face -->
+        <div class="card-face card-back" aria-hidden="true">
+          <div class="card-back-content">
+            <h3 class="card-title">About Ava</h3>
+            <p class="card-desc">
+              Passionate about building clean, accessible interfaces. Works with HTML, CSS, and modern JavaScript frameworks.
+            </p>
+            <a class="btn" href="#" role="button">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <p class="hint">Tip: Hover the card or focus it (Tab) and press Enter to toggle (keyboard support via :focus-within).</p>
+  </main>
+</body>
+</html>
